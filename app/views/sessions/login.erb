@@ -1,17 +1,28 @@
-<h3>Register!</h3>
-
-
+<h3>Hello, please login here</h3>
 <% if @errors %>
-<h3>Sorry... That didn't work.</h3>
 <h4><%= p @errors %></h4>
 <%end%>
 
-
-<form action='/users' method="POST">
+<form action='/login' method="POST">
   <div><label for="user_name">User name:</label><input name='user[user_name]' id='user_name' placeholder='User Name'></div>
   <div><label for="email">Email adddress:</label><input name='user[email]' id='email' placeholder='Email'><div>
   <div><label for="password">Password:</label><input type='password' name='user[password]' id='password' placeholder='Password'></div>
-  <div><label for="profile">Profile:</label><textarea rows="4" cols="50" type='text' name='user[profile]' id='profile' placeholder='Enter a bit about you...'></textarea></div>
-  <input type='submit' value='Create Account'>
+  <input type='submit' value='Login'>
 </form>
+
+<a href="/users/new"><h3>...Or create an account</h3></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
