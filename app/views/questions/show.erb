@@ -1,0 +1,19 @@
+<div><a href="/">Home</a></div>
+<br>
+<h3><%=@question.title%></h3>
+<%=@question.content%>
+<% @question.tags.each do |tag| %>
+  <p>Tags: <a href="/tags/<%=tag.id%>"><%=tag.name%></a></p>
+<% end %>
+<h3>Comments</h3>
+<% @comments.each do |comment| %>
+  <%=comment.content%>
+<% end %>
+
+<form action="/comments" method="Post">
+  <textarea rows="2" cols="50" type='text' name='comment[content]'></textarea>
+  <input type="hidden" name="question" value="<%=@question.id%>" >
+  <input type="submit" value="Comment!">
+  <br>
+</form>
+<div><a href="/answers/new">Answer</a></div>
