@@ -10,7 +10,6 @@ end
 post '/questions' do
   @question = Question.new(params[:question])
   @tag = Tag.find_or_create_by(params[:tag])
-  # binding.pry
   if @question.save
     @question.tags << @tag
     redirect "/questions/#{@question.id}"

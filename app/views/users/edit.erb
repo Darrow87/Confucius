@@ -1,0 +1,24 @@
+<h3>Edit!</h3>
+<%if @errors%>
+  <%@errors.each do |error|%>
+    <%=p error%>
+  <%end%>
+<%end%>
+
+<form action="/users/<%=@user.id%>" method="POST">
+  <input type='hidden' name="_method" value='put'>
+
+  <div><label for="user_name">User name:</label><input name='user[user_name]' id='user_name' value="<%=@user.user_name%>"></div>
+
+
+  <div><label for="email">Email adddress:</label>
+  <input name='user[email]' id='email' value="<%=@user.email%>"><div>
+
+  <div><label for="profile">Profile:</label><textarea rows="4" cols="50" type='text' name='user[profile]' id='profile' value="<%=@user.profile%>"></textarea></div>
+  <input type='submit' value='Up the heck date'>
+</form>
+
+
+
+
+

@@ -1,8 +1,11 @@
-<div><a href="/users/new">Register</a></div>
-<div><a href="/users/new">Login</a></div> #change path to login
+
 <div><a href="/questions/new">New Question</a></div>
+<div><a href="/users">Show All Users</a></div>
 <h1>Questions</h1>
 <% @questions.each do |question| %>
-  <h3><%=question.title%></h3>
-  <%=question.content%>
+  <h3><a href="/questions/<%=question.id%>"><%=question.title%></a></h3>
+  <strong>Tags</strong><%question.tags.each do |tag|%>
+  <div><%=tag.name%></div>
+  <%end%>
+
 <% end %>

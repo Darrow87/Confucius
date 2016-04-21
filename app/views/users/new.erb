@@ -2,8 +2,13 @@
 
 
 <% if @errors %>
-<h3>Sorry... That didn't work.</h3>
-<h4><%= p @errors %></h4>
+  <h3>Sorry... Confucius say...that didn't work.</h3>
+
+  <ul>
+    <%@errors.each do |error| %>
+      <li><%=p error%></li>
+      <%end%>
+  </ul>
 <%end%>
 
 
