@@ -1,19 +1,51 @@
 <div><a href="/">Home</a></div>
 <br>
-<h3><%=@question.title%></h3>
-<%=@question.content%>
-<% @question.tags.each do |tag| %>
-  <p>Tags: <a href="/tags/<%=tag.id%>"><%=tag.name%></a></p>
-<% end %>
-<h3>Comments</h3>
-<% @comments.each do |comment| %>
-  <%=comment.content%>
-<% end %>
+<h3>Title: <%=@question.title%></h3>
 
+Content: <%=@question.content%>
+<br>
+<br>
+Tags:<% @question.tags.each do |tag| %>
+  <p><a href="/tags/<%=tag.id%>"><%=tag.name%></a></p>
+<% end %>
+<h3>Question Comments</h3>
+<ul>
+<% @comments.each do |comment| %>
+  <li>
+    <%=comment.content%>
+  </li>
+<% end %>
+</ul>
 <form action="/comments" method="Post">
   <textarea rows="2" cols="50" type='text' name='comment[content]'></textarea>
-  <input type="hidden" name="question" value="<%=@question.id%>" >
+
+  <input type="hidden" name="commentable_id" value="<%=@question.id%>">
+  <input type="hidden" name="comment_type" value="Question">
   <input type="submit" value="Comment!">
   <br>
 </form>
+
+<%=@question.answers.count%> Answers
+<p>=========================================</p>
+<br>
+<ul>
+<li>
+  <%@question.answers.each do |answer|%>
+  <p><%=answer.content%></p>
+  <p>Answered By: <%=answer.user.user_name%></p>
+</li>
+<h4>Comments</h4>
+<%answer.comments.each do |comment|%>
+<p><%=comment.content%></p>
+<%end%>
+
+
+
+
+<%end%>
+</ul>
+
+
+
+
 <div><a href="/answers/new">Answer</a></div>

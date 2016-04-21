@@ -1,6 +1,9 @@
 <h3>Hello, please login here</h3>
 <% if @errors %>
-<h4><%= p @errors %></h4>
+<%@errors.each do |error|%>
+ <h2> <%= p error %></h2>
+<%end%>
+
 <%end%>
 
 <form action='/login' method="POST">
