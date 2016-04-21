@@ -54,18 +54,15 @@ Tags:<% @question.tags.each do |tag| %>
   <form method="post" action='/answers/<%=answer.id%>' class="inline">
     <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button downvote-button"></button>
     <input type="hidden" name="type" value="Answer">
-    <input type="hidden" name="answer_id" value="<%=answer.id%>" >
+ <!--    <input type="hidden" name="answer_id" value="<%=answer.id%>" > -->
   </form>
 
-
-  <%=@vote_count%>
-
-
+  <%=sum_votes(answer.votes)%>
 
   <form method="post" action='/answers/<%=answer.id%>' class="inline">
     <button type="submit" name="vote_num" value="-1" class="fa fa-sort-desc vote-button downvote-button"></button>
     <input type="hidden" name="type" value="Answer">
-    <input type="hidden" name="answer_id" value="<%=answer.id%>" >
+<!--     <input type="hidden" name="answer_id" value="<%=answer.id%>" > -->
   </form>
 
 <h4>Comments</h4>

@@ -8,8 +8,8 @@ post '/questions/:id/vote' do
 end
 
 post '/answers/:id' do
-  binding.pry
   vote = params[:vote_num].to_i
-  @answer = Answer.find_by(id: params[:answer_id])
-  @vote = Question.votes
+  @answer = Answer.find_by(id: params[:id])
+  @vote = @answer.votes.create(voteable_type: params[:type], value: vote, user_id: session[:user_id])
+  redirect "/questions/#{@answer.question_id}"
 end
