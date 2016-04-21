@@ -23,6 +23,7 @@ end
 get '/questions/:id' do
   @question = Question.find_by(id: params[:id])
   @comments = @question.comments
-
+  votes = @question.votes
+  @question_vote_count = sum_votes(votes)
   erb :'questions/show'
 end
