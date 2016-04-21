@@ -2,6 +2,21 @@
 <br>
 <h3>Title: <%=@question.title%></h3>
 
+
+<form method="post" action='/questions/<%= @question.id %>/vote' class="inline">
+  <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button downvote-button"></button>
+  <input type="hidden" name="type" value="Question">
+</form>
+
+
+<%=@question_vote_count%>
+
+
+<form method="post" action='/questions/<%= @question.id %>/vote' class="inline">
+  <button type="submit" name="vote_num" value="-1" class="fa fa-sort-desc vote-button downvote-button"></button>
+  <input type="hidden" name="type" value="Question">
+</form>
+
 Content: <%=@question.content%>
 <br>
 <br>
@@ -27,18 +42,39 @@ Tags:<% @question.tags.each do |tag| %>
 </form>
 
 <%=@question.answers.count%> Answers
+<h1>Answers</h1>
 <p>=========================================</p>
 <br>
 <ul>
-<li>
-  <%@question.answers.each do |answer|%>
-  <p><%=answer.content%></p>
+<%@question.answers.each do |answer|%>
+  <p><%=p answer.content%></p>
 
-</li>
+
+<!-- upvote button -->
+  <form method="post" action='/answers/<%=answer.id%>' class="inline">
+    <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button downvote-button"></button>
+    <input type="hidden" name="type" value="Answer">
+    <input type="hidden" name="answer_id" value="<%=answer.id%>" >
+  </form>
+
+
+  <%=@vote_count%>
+
+
+
+  <form method="post" action='/answers/<%=answer.id%>' class="inline">
+    <button type="submit" name="vote_num" value="-1" class="fa fa-sort-desc vote-button downvote-button"></button>
+    <input type="hidden" name="type" value="Answer">
+    <input type="hidden" name="answer_id" value="<%=answer.id%>" >
+  </form>
+
 <h4>Comments</h4>
-<%answer.comments.each do |comment|%>
-<p><%=comment.content%></p>
-<%end%>
+  <%answer.comments.each do |comment|%>
+
+  <p><%=comment.content%></p>
+  <%end%>
+
+
 
 <form action="/comments" method="Post">
   <textarea rows="2" cols="50" type='text' name='comment[content]'></textarea>
