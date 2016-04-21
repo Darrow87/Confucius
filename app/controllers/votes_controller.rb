@@ -7,7 +7,7 @@ post '/questions/:id/vote' do
   end
 end
 
-post '/answers/:id' do
+post '/answers/:id/vote' do
   vote = params[:vote_num].to_i
   @answer = Answer.find_by(id: params[:id])
   @vote = @answer.votes.create(voteable_type: params[:type], value: vote, user_id: session[:user_id])

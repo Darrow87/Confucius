@@ -7,3 +7,11 @@ post '/answers' do
 
   end
 end
+
+post '/answers/:id/best' do
+  @answer = Answer.find_by(id: params[:id])
+  @answer.best_answer = true
+  if @answer.save
+    redirect "/questions/#{@answer.question_id}"
+  end
+end
