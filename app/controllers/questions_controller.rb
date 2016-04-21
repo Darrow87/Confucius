@@ -25,5 +25,6 @@ get '/questions/:id' do
   @comments = @question.comments
   votes = @question.votes
   @question_vote_count = sum_votes(votes)
+  # binding.pry
   erb :'questions/show'
 end
