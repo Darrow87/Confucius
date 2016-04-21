@@ -25,6 +25,8 @@
   <%end%>
   <%if logged_in?%>
   <div><a href="/logout">Log the heck out...confucius say...</a></div>
+  <div><a href="/users/<%=session[:user_id]%>">Your Profile</a></div>
+  <div>Welcome, <%=User.find(session[:user_id]).user_name%>!</div>
 <%end%>
 
   <%= yield %>
