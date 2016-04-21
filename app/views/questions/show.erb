@@ -20,9 +20,11 @@
 Content: <%=@question.content%>
 <br>
 <br>
+
 Tags:<% @question.tags.each do |tag| %>
   <p><a href="/tags/<%=tag.id%>"><%=tag.name%></a></p>
 <% end %>
+
 <h3>Question Comments</h3>
 <ul>
 <% @comments.each do |comment| %>
@@ -47,31 +49,35 @@ Tags:<% @question.tags.each do |tag| %>
 <br>
 <ul>
 <%@question.answers.each do |answer|%>
+
+  <form method="post" action='/answers/<%=answer.id%>/best' class="inline">
+    <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button downvote-button">Vote Best Answer</button>
+    <input type="hidden" name="type" value="Answer">
+  </form>
+
   <p><%=p answer.content%></p>
 
+  <% if answer.best_answer%>
+    <p>Voted Best Answer!</p>
+  <%end%>
 
 <!-- upvote button -->
-  <form method="post" action='/answers/<%=answer.id%>' class="inline">
+  <form method="post" action='/answers/<%=answer.id%>/vote' class="inline">
     <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button downvote-button"></button>
     <input type="hidden" name="type" value="Answer">
- <!--    <input type="hidden" name="answer_id" value="<%=answer.id%>" > -->
   </form>
 
   <%=sum_votes(answer.votes)%>
 
-  <form method="post" action='/answers/<%=answer.id%>' class="inline">
+  <form method="post" action='/answers/<%=answer.id%>/vote' class="inline">
     <button type="submit" name="vote_num" value="-1" class="fa fa-sort-desc vote-button downvote-button"></button>
     <input type="hidden" name="type" value="Answer">
-<!--     <input type="hidden" name="answer_id" value="<%=answer.id%>" > -->
   </form>
 
-<h4>Comments</h4>
+  <h4>Comments</h4>
   <%answer.comments.each do |comment|%>
-
-  <p><%=comment.content%></p>
+    <p><%=comment.content%></p>
   <%end%>
-
-
 
 <form action="/comments" method="Post">
   <textarea rows="2" cols="50" type='text' name='comment[content]'></textarea>
@@ -81,7 +87,6 @@ Tags:<% @question.tags.each do |tag| %>
   <input type="submit" value="Comment on this answer">
   <br>
 </form>
-
 
 <%end%>
 </ul>
