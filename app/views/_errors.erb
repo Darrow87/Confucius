@@ -1,0 +1,21 @@
+<%if @errors%>
+  <%= p "Sorry... that did't work:  "%>
+  <%@errors.each do |error|%>
+    <%=error%>
+  <%end%>
+<%end%>
+
+<%if @vote_errors%>
+  <%= p "Sorry... that did't work:  "%>
+  <%@vote_errors.each do |error|%>
+    <%=error%>
+  <%end%>
+<%end%>
+
+<%if @vote_answer_errors%>
+  <%= p "Sorry... that did't work:  "%>
+  <%@vote_answer_errors.each do |error|%>
+    <%=error%>
+  <%end%>
+<%end%>
+

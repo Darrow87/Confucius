@@ -4,7 +4,9 @@ post '/answers' do
   if @answer.save
     redirect "/questions/#{params[:question_id]}"
   else
-
+    @errors = @answer.errors.full_messages
+    @question = Question.find_by(id: params[:question_id])
+    erb :'/questions/show'
   end
 end
 

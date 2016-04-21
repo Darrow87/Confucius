@@ -4,4 +4,17 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-});
+
+//   $('.vote-button').on('submit', function(event){
+//     event.preventDefault();
+//     $target = $(event.target);
+
+//     $.ajax({
+//       method: $target.attr("method"),
+//       url: $target.attr("action")
+//     })
+
+
+
+//   });
+// });
