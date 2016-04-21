@@ -16,9 +16,10 @@ Tags:<% @question.tags.each do |tag| %>
   </li>
 <% end %>
 </ul>
+
 <form action="/comments" method="Post">
   <textarea rows="2" cols="50" type='text' name='comment[content]'></textarea>
-
+  <input type="hidden" name="question_id" value="<%=@question.id%>">
   <input type="hidden" name="commentable_id" value="<%=@question.id%>">
   <input type="hidden" name="comment_type" value="Question">
   <input type="submit" value="Comment!">
@@ -32,20 +33,30 @@ Tags:<% @question.tags.each do |tag| %>
 <li>
   <%@question.answers.each do |answer|%>
   <p><%=answer.content%></p>
-  <p>Answered By: <%=answer.user.user_name%></p>
+
 </li>
 <h4>Comments</h4>
 <%answer.comments.each do |comment|%>
 <p><%=comment.content%></p>
 <%end%>
 
-
+<form action="/comments" method="Post">
+  <textarea rows="2" cols="50" type='text' name='comment[content]'></textarea>
+  <input type="hidden" name="commentable_id" value="<%=answer.id%>">
+  <input type="hidden" name="question_id" value="<%=@question.id%>">
+  <input type="hidden" name="comment_type" value="Answer">
+  <input type="submit" value="Comment on this answer">
+  <br>
+</form>
 
 
 <%end%>
 </ul>
 
-
-
-
-<div><a href="/answers/new">Answer</a></div>
+<form action="/answers" method="Post">
+  <textarea rows="2" cols="50" type='text' name='answer[content]'></textarea>
+  <input type="hidden" name="user_id" value="<%=session[:user_id]%>">
+  <input type="hidden" name="question_id" value="<%=@question.id%>">
+  <input type="submit" value="Answer this question">
+  <br>
+</form>

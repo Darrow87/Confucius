@@ -8,6 +8,7 @@ get '/questions/new' do
 end
 
 post '/questions' do
+
   @question = Question.new(params[:question])
   @tag = Tag.find_or_create_by(params[:tag])
   if @question.save
