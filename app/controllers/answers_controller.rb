@@ -1,11 +1,16 @@
 post '/answers' do
-  #get question ID associated with answer
- @answer = Answer.new(content: params[:answer][:content], user_id: params[:user_id], question_id: params[:question_id])
+  @answer = Answer.new(content: params[:answer][:content], user_id: params[:user_id], question_id: params[:question_id])
+    @question = Question.find_by(id: params[:question_id])
+
   if @answer.save
-    redirect "/questions/#{params[:question_id]}"
+    if request.xhr?
+     erb :'/_answer', layout: false, locals: {answer: @answer, question_id: @question.id}
+    else
+
+      redirect "/questions/#{params[:question_id]}"
+    end
   else
     @errors = @answer.errors.full_messages
-    @question = Question.find_by(id: params[:question_id])
     erb :'/questions/show'
   end
 end
