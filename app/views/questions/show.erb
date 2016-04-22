@@ -46,6 +46,8 @@ Tags:<% @question.tags.each do |tag| %>
   <br>
 </form>
 
+<div id="answer_container">
+
 <%=@question.answers.count%> Answers
 <h1>Answers</h1>
 <p>=========================================</p>
@@ -58,7 +60,8 @@ Tags:<% @question.tags.each do |tag| %>
     <input type="hidden" name="type" value="Answer">
   </form>
 
-  <p><%=p answer.content%></p>
+    <%= erb :'_answer', locals:{answer: answer}, layout: false %>
+
 
   <% if answer.best_answer%>
     <p>Voted Best Answer!</p>
@@ -96,9 +99,10 @@ Tags:<% @question.tags.each do |tag| %>
 <%end%>
 </ul>
 
+</div>
 
 <% if logged_in? %>
-<form action="/answers" method="Post">
+<form action="/answers" id="answer-form" method="Post">
   <textarea rows="2" cols="50" type='text' name='answer[content]'></textarea>
   <input type="hidden" name="user_id" value="<%=session[:user_id]%>">
   <input type="hidden" name="question_id" value="<%=@question.id%>">
