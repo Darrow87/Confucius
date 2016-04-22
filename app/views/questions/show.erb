@@ -47,19 +47,17 @@ Tags:<% @question.tags.each do |tag| %>
 
 
 <div id="answer_container">
-<%=@question.answers.count%> Answers
-<h1>Answers</h1>
-<p>=========================================</p>
-<br>
-<ul>
-
-
-<%@question.answers.each do |answer|%>
-<%= erb :'_answer', locals:{answer: answer, question_id: @question.id}, layout: false %>
-<%end%>
-</ul>
-
-
+  <%=@question.answers.count%> Answers
+  <h1>Answers</h1>
+  <p>=========================================</p>
+  <br>
+  <ul>
+    <%@question.answers.each do |answer|%>
+      <div class="answer_content">
+      <%= erb :'_answer', locals: {answer: answer, question_id: @question.id}, layout: false %>
+      </div>
+    <%end%>
+  </ul>
 </div>
 
 <% if logged_in? %>
