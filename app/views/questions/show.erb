@@ -1,10 +1,11 @@
-<div><a href="/">Home</a></div>
+<div class="box">
+
 <br>
-<h3>Title: <%=@question.title%></h3>
+<h3 id="question-title"><%=@question.title%></h3>
 
 <%= erb :_errors%>
 
-
+<div class="vote-buttons-to-left">
 <form method="post" class="vote-button" action='/questions/<%= @question.id %>/vote' class="inline">
   <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button downvote-button"></button>
   <input type="hidden" name="type" value="Question">
@@ -21,14 +22,18 @@
   <input type="hidden" name="vote_num" value="-1">
 </form>
 
-Content: <%=@question.content%>
+</div>
+
+<h4><%=@question.content%></h4>
 <br>
 
+
 Tags:<% @question.tags.each do |tag| %>
-  <p><a href="/tags/<%=tag.id%>"><%=tag.name%></a></p>
+  <p class="tagg"><a href="/tags/<%=tag.id%>"><%=tag.name%>&nbsp </a></p>
 <% end %>
 
-<h3>Question Comments</h3>
+
+<h3><b>Question Comments<b></h3>
 <ul>
 <% @question.comments.each do |comment| %>
   <li>
@@ -52,7 +57,7 @@ Tags:<% @question.tags.each do |tag| %>
 <div id="answer_container">
   <%=@question.answers.count%> Answers
   <h1>Answers</h1>
-  <p>=========================================</p>
+  <hr size="5">
   <br>
   <ul>
     <%@question.answers.each do |answer|%>
@@ -72,3 +77,4 @@ Tags:<% @question.tags.each do |tag| %>
   <br>
 </form>
 <%end%>
+</div>
