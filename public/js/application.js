@@ -24,7 +24,17 @@ $(document).ready(function() {
   })
 
 
+$(".answer_comment").on('click', function(event){
+  event.preventDefault();
+  $target = $(event.target)
+  debugger;
+  $("#answer_content").find(removeClass('answer_comment_form')
+})
+
+
 
 
 
 });
+
+

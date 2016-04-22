@@ -29,15 +29,18 @@
     <p><%=comment.content%></p>
   <%end%>
 
+<button type="click" class="answer_comment">Comment on this answer</button>
 
-  <form action="/comments" method="Post">
+<div id="answer_comment_form_container">
+  <form class="answer_comment_form" action="/comments" method="Post">
   <textarea rows="2" cols="50" type='text' name='comment[content]'></textarea>
   <input type="hidden" name="commentable_id" value="<%=answer.id%>">
   <input type="hidden" name="question_id" value="<%=question_id%>">
   <input type="hidden" name="comment_type" value="Answer">
   <input type="submit" value="Comment on this answer">
   <br>
-</form>
+  </form>
+</div>
 
   <% if answer.best_answer%>
     <p>Voted Best Answer!</p>
