@@ -20,7 +20,6 @@
 
 Content: <%=@question.content%>
 <br>
-<br>
 
 Tags:<% @question.tags.each do |tag| %>
   <p><a href="/tags/<%=tag.id%>"><%=tag.name%></a></p>
@@ -53,6 +52,8 @@ Tags:<% @question.tags.each do |tag| %>
 <p>=========================================</p>
 <br>
 <ul>
+
+
 <%@question.answers.each do |answer|%>
 
   <form method="post" action='/answers/<%=answer.id%>/best' class="inline">
@@ -60,7 +61,7 @@ Tags:<% @question.tags.each do |tag| %>
     <input type="hidden" name="type" value="Answer">
   </form>
 
-    <%= erb :'_answer', locals:{answer: answer}, layout: false %>
+    <%= erb :'_answer', locals:{answer: answer, question_id: @question.id}, layout: false %>
 
 
   <% if answer.best_answer%>
