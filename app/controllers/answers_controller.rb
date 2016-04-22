@@ -4,6 +4,7 @@ post '/answers' do
 
   if @answer.save
     if request.xhr?
+
      erb :'/_answer', layout: false, locals: {answer: @answer, question_id: @question.id}
     else
 

@@ -1,4 +1,4 @@
-<div class="answer_content">
+
 
 =========================================================================
 <h2>ANSWER CONTENT: <%= answer.content%></h2>
@@ -24,20 +24,25 @@
     <input type="hidden" name="type" value="Answer">
   </form>
 
+
   <h4>Comments</h4>
   <%answer.comments.each do |comment|%>
-    <p><%=comment.content%></p>
+      <%= erb :'_comment', locals:{comment: comment} %>
   <%end%>
+
+
+
+
 
 <button type="click" class="answer_comment">Comment on this answer</button>
 
 <div id="answer_comment_form_container">
-  <form class="answer_comment_form" action="/comments" method="Post">
+  <form class="answer_comment_form" class="classy" action="/comments" method="post">
   <textarea rows="2" cols="50" type='text' name='comment[content]'></textarea>
   <input type="hidden" name="commentable_id" value="<%=answer.id%>">
   <input type="hidden" name="question_id" value="<%=question_id%>">
   <input type="hidden" name="comment_type" value="Answer">
-  <input type="submit" value="Comment on this answer">
+  <input type="submit" value="Submit Comment">
   <br>
 </form>
 </div>
@@ -48,6 +53,6 @@
 
 
 
-</div>
+
 
 
