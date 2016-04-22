@@ -45,8 +45,8 @@ Tags:<% @question.tags.each do |tag| %>
   <br>
 </form>
 
-<div id="answer_container">
 
+<div id="answer_container">
 <%=@question.answers.count%> Answers
 <h1>Answers</h1>
 <p>=========================================</p>
@@ -55,50 +55,12 @@ Tags:<% @question.tags.each do |tag| %>
 
 
 <%@question.answers.each do |answer|%>
-
-  <form method="post" action='/answers/<%=answer.id%>/best' class="inline">
-    <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button downvote-button">Vote Best Answer</button>
-    <input type="hidden" name="type" value="Answer">
-  </form>
-
-    <%= erb :'_answer', locals:{answer: answer, question_id: @question.id}, layout: false %>
-
-
-  <% if answer.best_answer%>
-    <p>Voted Best Answer!</p>
-  <%end%>
-
-<!-- upvote button -->
-
-  <form method="post" action='/answers/<%=answer.id%>/vote' class="inline">
-
-    <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button downvote-button"></button>
-    <input type="hidden" name="type" value="Answer">
-  </form>
-
-  <%=sum_votes(answer.votes)%>
-
-  <form method="post" action='/answers/<%=answer.id%>/vote' class="inline">
-    <button type="submit" name="vote_num" value="-1" class="fa fa-sort-desc vote-button downvote-button"></button>
-    <input type="hidden" name="type" value="Answer">
-  </form>
-
-  <h4>Comments</h4>
-  <%answer.comments.each do |comment|%>
-    <p><%=comment.content%></p>
-  <%end%>
-
-<form action="/comments" method="Post">
-  <textarea rows="2" cols="50" type='text' name='comment[content]'></textarea>
-  <input type="hidden" name="commentable_id" value="<%=answer.id%>">
-  <input type="hidden" name="question_id" value="<%=@question.id%>">
-  <input type="hidden" name="comment_type" value="Answer">
-  <input type="submit" value="Comment on this answer">
-  <br>
-</form>
-
+<%= erb :'_answer', locals:{answer: answer, question_id: @question.id}, layout: false %>
 <%end%>
+
+
 </ul>
+
 
 </div>
 
