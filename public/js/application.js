@@ -1,14 +1,17 @@
 $(document).ready(function() {
 
 
-//   $('.vote-button').on('submit', function(event){
-//     event.preventDefault();
-//     $target = $(event.target);
+  // $('.vote-button').on('submit', function(event){
+  //   event.preventDefault();
+  //   $.ajax({
+  //     url: $(event.target).attr('action'),
+  //     method: $(event.target).attr('method')
+  //   }).done(function(response){
+  //   // debugger;
 
-//     $.ajax({
-//       method: $target.attr("method"),
-//       url: $target.attr("action")
-//     })
+  //   })
+  // })
+
 
   $('#answer-form').on('submit', function(event){
     event.preventDefault();
