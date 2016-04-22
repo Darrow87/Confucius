@@ -3,17 +3,21 @@
 =========================================================================
 <h2>ANSWER CONTENT: <%= answer.content%></h2>
 
-  <form method="post" action='/answers/<%=answer.id%>/vote' class="inline vote-button">
+  <form method="post" action='/answers/<%=answer.id%>/vote' class="inline answer-upvote-button">
 
     <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button downvote-button"></button>
     <input type="hidden" name="type" value="Answer">
+    <input type="hidden" name="vote_num" value="1">
   </form>
 
-  <%=sum_votes(answer.votes)%>
+  <div id="answer-votes">
+    <%=sum_votes(answer.votes)%>
+  </div>
 
-  <form method="post" action='/answers/<%=answer.id%>/vote' class="inline vote-button">
+  <form method="post" action='/answers/<%=answer.id%>/vote' class="inline answer-downvote-button">
     <button type="submit" name="vote_num" value="-1" class="fa fa-sort-desc vote-button downvote-button"></button>
     <input type="hidden" name="type" value="Answer">
+    <input type="hidden" name="vote_num" value="-1">
   </form>
   <br>
 

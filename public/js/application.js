@@ -1,16 +1,41 @@
 $(document).ready(function() {
 
 
-  // $('.vote-button').on('submit', function(event){
-  //   event.preventDefault();
-  //   $.ajax({
-  //     url: $(event.target).attr('action'),
-  //     method: $(event.target).attr('method')
-  //   }).done(function(response){
-  //   // debugger;
+  $('.vote-button').on('submit', function(event){
+    event.preventDefault();
 
-  //   })
-  // })
+    $.ajax({
+      url: $(event.target).attr('action'),
+      method: $(event.target).attr('method'),
+      data: $(event.target).serialize()
+    }).done(function(response){
+      $('#question-votes').html(response)
+    })
+  })
+
+    $('#answer_container').on('submit', '.answer-upvote-button',function(event){
+      $target = $(event.target)
+    event.preventDefault();
+    $.ajax({
+      url: $(event.target).attr('action'),
+      method: $(event.target).attr('method'),
+      data: $(event.target).serialize()
+    }).done(function(response){
+      $target.next().html(response)
+    })
+  })
+
+        $('#answer_container').on('submit', '.answer-downvote-button',function(event){
+      $target = $(event.target)
+    event.preventDefault();
+    $.ajax({
+      url: $(event.target).attr('action'),
+      method: $(event.target).attr('method'),
+      data: $(event.target).serialize()
+    }).done(function(response){
+      $target.prev().html(response)
+    })
+  })
 
 
   $('#answer-form').on('submit', function(event){
