@@ -57,8 +57,6 @@ Tags:<% @question.tags.each do |tag| %>
 <%@question.answers.each do |answer|%>
 <%= erb :'_answer', locals:{answer: answer, question_id: @question.id}, layout: false %>
 <%end%>
-
-
 </ul>
 
 
@@ -72,5 +70,4 @@ Tags:<% @question.tags.each do |tag| %>
   <input type="submit" value="Answer this question">
   <br>
 </form>
-
 <%end%>
