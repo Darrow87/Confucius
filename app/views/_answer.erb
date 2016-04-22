@@ -1,11 +1,8 @@
-
-
-=========================================================================
-<h2>ANSWER CONTENT: <%= answer.content%></h2>
+<h2 id="answer-content"><%= answer.content%></h2>
 
   <form method="post" action='/answers/<%=answer.id%>/vote' class="inline answer-upvote-button">
 
-    <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button downvote-button"></button>
+    <button type="submit" name="vote_num" value="1" class="fa fa-sort-desc vote-button upvote-butn"></button>
     <input type="hidden" name="type" value="Answer">
     <input type="hidden" name="vote_num" value="1">
   </form>
@@ -30,10 +27,11 @@
 
 
   <h4>Comments</h4>
+  <ul>
   <%answer.comments.each do |comment|%>
-      <%= erb :'_comment', locals:{comment: comment} %>
+     <li> <%= erb :'_comment', locals:{comment: comment} %> </li>
   <%end%>
-
+</ul>
 
 
 
